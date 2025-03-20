@@ -15,6 +15,7 @@
             background-position: center;
             background-attachment: fixed;
             transition: background 1s ease-in-out;
+            background: transparent;
         }
         .header {
             font-size: 40px;
@@ -50,22 +51,21 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 22px;
+            font-size: 18px;
             font-weight: bold;
             box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.2);
         }
         .player-list img, .team-list img {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             border-radius: 10px;
-            margin-right: 15px;
             object-fit: cover;
         }
         button {
             background: #ff9900;
             color: white;
             border: none;
-            padding: 10px 15px;
+            padding: 8px 12px;
             cursor: pointer;
             border-radius: 5px;
             font-weight: bold;
@@ -73,6 +73,15 @@
         }
         button:hover {
             background: #cc7700;
+        }
+        .qr-container {
+            display: none;
+            margin-top: 20px;
+        }
+        .qr-container img {
+            width: 200px;
+            height: auto;
+            max-width: 100%;
         }
         @media (max-width: 768px) {
             .container {
@@ -82,6 +91,13 @@
             .team, .bidding-area {
                 width: 90%;
                 margin-bottom: 20px;
+            }
+            .player-list img, .team-list img {
+                width: 50px;
+                height: 50px;
+            }
+            .qr-container img {
+                width: 150px;
             }
         }
     </style>
@@ -103,16 +119,22 @@
             <ul id="teamB" class="team-list"></ul>
         </div>
     </div>
+    
+    <button onclick="showQR()">Pay Now</button>
+    
+    <div class="qr-container" id="qrContainer">
+        <img src="https://raw.githubusercontent.com/F3LUD4/BaganPremierLeague/main/qr-code.png" alt="Payment QR Code">
+    </div>
 
     <script>
         const backgrounds = [
-            'https://github.com/F3LUD4/BaganPremierLeague/blob/main/ac3b014bef43d76837d310c331808f63.jpg?raw=true',
-            'https://github.com/F3LUD4/BaganPremierLeague/blob/main/cricket-logo-design-template-a06049850cc71f14a0e4a84a569dd129_screen.jpg?raw=true',
-            'https://github.com/F3LUD4/BaganPremierLeague/blob/main/Background.JPG?raw=true'
+            'https://raw.githubusercontent.com/F3LUD4/BaganPremierLeague/main/ac3b014bef43d76837d310c331808f63.jpg',
+            'https://raw.githubusercontent.com/F3LUD4/BaganPremierLeague/main/cricket-logo-design-template-a06049850cc71f14a0e4a84a569dd129_screen.jpg',
+            'https://raw.githubusercontent.com/F3LUD4/BaganPremierLeague/main/Background.JPG'
         ];
         let bgIndex = 0;
         function changeBackground() {
-            document.body.style.backgroundImage = url(${backgrounds[bgIndex]});
+            document.body.style.backgroundImage = `url(${backgrounds[bgIndex]})`;
             bgIndex = (bgIndex + 1) % backgrounds.length;
         }
         setInterval(changeBackground, 5000);
@@ -136,16 +158,19 @@
             playerList.innerHTML = "";
             players.forEach((player, index) => {
                 const li = document.createElement("li");
-                li.innerHTML = <img src="${player.img}" alt="${player.name}"> ${player.name} - ${player.role} <button onclick='bidPlayer(${index})'>Select</button>;
+                li.innerHTML = `<img src="${player.img}" alt="${player.name}"> ${player.name} - ${player.role} <button onclick='bidPlayer(${index})'>Select</button>`;
                 playerList.appendChild(li);
             });
         }
         function bidPlayer(index) {
             const team = turn === "A" ? "teamA" : "teamB";
-            document.getElementById(team).innerHTML += <li><img src="${players[index].img}" alt="${players[index].name}"> ${players[index].name} - ${players[index].role}</li>;
+            document.getElementById(team).innerHTML += `<li><img src="${players[index].img}" alt="${players[index].name}"> ${players[index].name} - ${players[index].role}</li>`;
             players.splice(index, 1);
             turn = turn === "A" ? "B" : "A";
             renderPlayers();
+        }
+        function showQR() {
+            document.getElementById("qrContainer").style.display = "block";
         }
         renderPlayers();
     </script>
