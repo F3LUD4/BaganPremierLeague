@@ -5,38 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bagan Premier League - Cricket Bidding</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
-        
         body {
             font-family: 'Orbitron', sans-serif;
-            text-align: center;
-            color: white;
+            background: url('https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/images/bg1.jpg') no-repeat center center fixed;
             background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            transition: background 1s ease-in-out;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
         }
         .header {
-            font-size: 40px;
+            font-size: 35px;
             font-weight: bold;
             padding: 20px;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
             border-radius: 10px;
             display: inline-block;
+            width: 90%;
         }
         .container {
             display: flex;
-            flex-wrap: wrap;
             justify-content: space-around;
             margin-top: 50px;
+            flex-wrap: wrap;
         }
         .team, .bidding-area {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.5);
             padding: 20px;
             border-radius: 10px;
-            width: 100%;
-            max-width: 400px;
             box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3);
+            width: 30%;
+            min-width: 280px;
+            margin: 10px;
         }
         .player-list, .team-list {
             list-style: none;
@@ -48,78 +48,56 @@
             margin: 10px 0;
             border-radius: 5px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: bold;
             box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.2);
         }
         .player-list img, .team-list img {
             width: 70px;
             height: 70px;
+            object-fit: cover;
             border-radius: 10px;
             margin-right: 15px;
-            object-fit: cover;
         }
         button {
-            background: #ff9900;
-            color: white;
+            background: #ffcc00;
+            color: black;
             border: none;
-            padding: 10px 15px;
+            padding: 10px;
             cursor: pointer;
             border-radius: 5px;
             font-weight: bold;
-            box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
+            margin-left: auto;
         }
         button:hover {
-            background: #cc7700;
+            background: #ff9900;
         }
-        .pay-button {
-            margin-top: 20px;
-            background: #00c3ff;
-            color: white;
-            font-size: 20px;
-            padding: 15px 30px;
-            border-radius: 10px;
-            cursor: pointer;
-            box-shadow: 0px 0px 10px rgba(0, 195, 255, 0.7);
-            transition: 0.3s;
-        }
-        .pay-button:hover {
-            background: #008ac1;
-        }
-        .qr-modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.3);
-            width: 90%;
-            max-width: 300px;
-            text-align: center;
-        }
-        .qr-modal img {
-            width: 100%;
-            height: auto;
-            max-width: 250px;
-            border-radius: 10px;
-        }
-        .close-btn {
-            background: red;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
+
+        /* 🔹 Responsive Styles */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .team, .bidding-area {
+                width: 90%;
+            }
+            .player-list li, .team-list li {
+                font-size: 18px;
+            }
+            .player-list img, .team-list img {
+                width: 60px;
+                height: 60px;
+            }
+            button {
+                padding: 8px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">🏏 Bagan Premier League - Cricket Bidding 🏆</div>
+    <div class="header">🏏 Bagan Premier League - Cricket Bidding 🏏</div>
     
     <div class="container">
         <div class="team">
@@ -128,17 +106,7 @@
         </div>
         <div class="bidding-area">
             <h2>Available Players</h2>
-            <ul id="availablePlayers" class="player-list">
-                <li><img src="player1.jpg" alt="Sonu"> Sonu</li>
-                <li><img src="player2.jpg" alt="Tojo Da"> Tojo Da</li>
-                <li><img src="player3.jpg" alt="Sayak"> Sayak</li>
-                <li><img src="player4.jpg" alt="Samiran Da"> Samiran Da</li>
-                <li><img src="player5.jpg" alt="Loga"> Loga</li>
-                <li><img src="player6.jpg" alt="Vola"> Vola</li>
-                <li><img src="player7.jpg" alt="Avay"> Avay</li>
-                <li><img src="player8.jpg" alt="Polu"> Polu</li>
-                <li><img src="player9.jpg" alt="Aritra"> Aritra</li>
-            </ul>
+            <ul id="availablePlayers" class="player-list"></ul>
         </div>
         <div class="team">
             <h2>Team B</h2>
@@ -146,21 +114,45 @@
         </div>
     </div>
 
-    <button class="pay-button" onclick="showQR()">💳 PAY</button>
-
-    <div id="qrModal" class="qr-modal">
-        <img src="https://raw.githubusercontent.com/F3LUD4/BaganPremierLeague/main/qr-code.png" alt="QR Code">
-        <br>
-        <button class="close-btn" onclick="hideQR()">Close</button>
-    </div>
-
     <script>
-        function showQR() {
-            document.getElementById("qrModal").style.display = "block";
+        const players = [
+            { name: "Sonu", role: "All-rounder", img: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/images/sonu.jpg" },
+            { name: "Tojo Da", role: "Batsman", img: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/images/tojo.jpg" },
+            { name: "Sayak", role: "Batsman", img: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/images/sayak.jpg" },
+            { name: "Samiran Da", role: "Batsman", img: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/images/samiran.jpg" },
+            { name: "Loga", role: "Bowler", img: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/images/loga.jpg" },
+            { name: "Vola", role: "Swing Bowler", img: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/images/vola.jpg" },
+            { name: "Avay", role: "All-rounder", img: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/images/avay.jpg" },
+            { name: "Polu", role: "Batsman", img: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/images/polu.jpg" },
+            { name: "Aritra", role: "Batsman", img: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/images/aritra.jpg" }
+        ];
+        
+        let turn = "A";
+        
+        function renderPlayers() {
+            const playerList = document.getElementById("availablePlayers");
+            playerList.innerHTML = "";
+            players.forEach((player, index) => {
+                const li = document.createElement("li");
+                li.innerHTML = `<img src="${player.img}" alt="${player.name}"> ${player.name} - ${player.role} <button onclick='bidPlayer(${index})'>Select</button>`;
+                playerList.appendChild(li);
+            });
         }
-        function hideQR() {
-            document.getElementById("qrModal").style.display = "none";
+        
+        function bidPlayer(index) {
+            const team = turn === "A" ? "teamA" : "teamB";
+            const player = players[index];
+
+            // Add player to selected team
+            document.getElementById(team).innerHTML += `<li><img src="${player.img}" alt="${player.name}"> ${player.name} - ${player.role}</li>`;
+
+            // Remove from available players
+            players.splice(index, 1);
+            turn = turn === "A" ? "B" : "A";
+            renderPlayers();
         }
+        
+        renderPlayers();
     </script>
 </body>
 </html>
