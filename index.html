@@ -5,38 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bagan Premier League - Cricket Bidding</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+        
         body {
             font-family: 'Orbitron', sans-serif;
-            background: url('https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/images/bg1.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: white;
             text-align: center;
-            margin: 0;
-            padding: 0;
+            color: white;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            transition: background 1s ease-in-out;
         }
         .header {
-            font-size: 35px;
+            font-size: 40px;
             font-weight: bold;
             padding: 20px;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.5);
             border-radius: 10px;
             display: inline-block;
-            width: 90%;
         }
         .container {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-around;
             margin-top: 50px;
-            flex-wrap: wrap;
         }
         .team, .bidding-area {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.3);
             padding: 20px;
             border-radius: 10px;
+            width: 100%;
+            max-width: 400px;
             box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3);
-            width: 30%;
-            min-width: 280px;
-            margin: 10px;
         }
         .player-list, .team-list {
             list-style: none;
@@ -48,33 +48,32 @@
             margin: 10px 0;
             border-radius: 5px;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
             box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.2);
         }
         .player-list img, .team-list img {
             width: 70px;
             height: 70px;
-            object-fit: cover;
             border-radius: 10px;
             margin-right: 15px;
+            object-fit: cover;
         }
         button {
-            background: #ffcc00;
-            color: black;
+            background: #ff9900;
+            color: white;
             border: none;
-            padding: 10px;
+            padding: 10px 15px;
             cursor: pointer;
             border-radius: 5px;
             font-weight: bold;
-            margin-left: auto;
+            box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
         }
         button:hover {
-            background: #ff9900;
+            background: #cc7700;
         }
-
-        /* 🔹 Responsive Styles */
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -82,22 +81,13 @@
             }
             .team, .bidding-area {
                 width: 90%;
-            }
-            .player-list li, .team-list li {
-                font-size: 18px;
-            }
-            .player-list img, .team-list img {
-                width: 60px;
-                height: 60px;
-            }
-            button {
-                padding: 8px;
+                margin-bottom: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="header">🏏 Bagan Premier League - Cricket Bidding 🏏</div>
+    <div class="header">🏏 Bagan Premier League - Cricket Bidding 🏆</div>
     
     <div class="container">
         <div class="team">
@@ -115,43 +105,48 @@
     </div>
 
     <script>
-        const players = [
-            { name: "Sonu", role: "All-rounder", img: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/images/sonu.jpg" },
-            { name: "Tojo Da", role: "Batsman", img: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/images/tojo.jpg" },
-            { name: "Sayak", role: "Batsman", img: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/images/sayak.jpg" },
-            { name: "Samiran Da", role: "Batsman", img: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/images/samiran.jpg" },
-            { name: "Loga", role: "Bowler", img: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/images/loga.jpg" },
-            { name: "Vola", role: "Swing Bowler", img: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/images/vola.jpg" },
-            { name: "Avay", role: "All-rounder", img: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/images/avay.jpg" },
-            { name: "Polu", role: "Batsman", img: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/images/polu.jpg" },
-            { name: "Aritra", role: "Batsman", img: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/images/aritra.jpg" }
+        const backgrounds = [
+            'https://github.com/F3LUD4/BaganPremierLeague/blob/main/ac3b014bef43d76837d310c331808f63.jpg?raw=true',
+            'https://github.com/F3LUD4/BaganPremierLeague/blob/main/cricket-logo-design-template-a06049850cc71f14a0e4a84a569dd129_screen.jpg?raw=true',
+            'https://github.com/F3LUD4/BaganPremierLeague/blob/main/Background.JPG?raw=true'
         ];
-        
+        let bgIndex = 0;
+        function changeBackground() {
+            document.body.style.backgroundImage = url(${backgrounds[bgIndex]});
+            bgIndex = (bgIndex + 1) % backgrounds.length;
+        }
+        setInterval(changeBackground, 5000);
+        changeBackground();
+
+        const players = [
+            { name: "Sonu", role: "All-rounder", img: "https://raw.githubusercontent.com/yourusername/your-repo/main/images/sonu.jpg" },
+            { name: "Tojo Da", role: "Batsman", img: "https://raw.githubusercontent.com/F3LUD4/BaganPremierLeague/refs/heads/main/IMG20230105084149.jpg" },
+            { name: "Sayak", role: "Batsman", img: "https://github.com/F3LUD4/BaganPremierLeague/blob/main/WhatsApp%20Image%202025-03-18%20at%2023.05.06_a10236c1.jpg?raw=true" },
+            { name: "Samiran Da", role: "Batsman", img: "https://raw.githubusercontent.com/yourusername/your-repo/main/images/samiran.jpg" },
+            { name: "Loga", role: "Bowler", img: "https://raw.githubusercontent.com/yourusername/your-repo/main/images/loga.jpg" },
+            { name: "Vola", role: "Swing Bowler", img: "https://raw.githubusercontent.com/yourusername/your-repo/main/images/vola.jpg" },
+            { name: "Avay", role: "All-rounder", img: "https://raw.githubusercontent.com/yourusername/your-repo/main/images/avay.jpg" },
+            { name: "Polu", role: "Batsman", img: "https://raw.githubusercontent.com/yourusername/your-repo/main/images/polu.jpg" },
+            { name: "Aritra", role: "Batsman", img: "https://raw.githubusercontent.com/yourusername/your-repo/main/images/aritra.jpg" }
+        ];
+
         let turn = "A";
-        
         function renderPlayers() {
             const playerList = document.getElementById("availablePlayers");
             playerList.innerHTML = "";
             players.forEach((player, index) => {
                 const li = document.createElement("li");
-                li.innerHTML = `<img src="${player.img}" alt="${player.name}"> ${player.name} - ${player.role} <button onclick='bidPlayer(${index})'>Select</button>`;
+                li.innerHTML = <img src="${player.img}" alt="${player.name}"> ${player.name} - ${player.role} <button onclick='bidPlayer(${index})'>Select</button>;
                 playerList.appendChild(li);
             });
         }
-        
         function bidPlayer(index) {
             const team = turn === "A" ? "teamA" : "teamB";
-            const player = players[index];
-
-            // Add player to selected team
-            document.getElementById(team).innerHTML += `<li><img src="${player.img}" alt="${player.name}"> ${player.name} - ${player.role}</li>`;
-
-            // Remove from available players
+            document.getElementById(team).innerHTML += <li><img src="${players[index].img}" alt="${players[index].name}"> ${players[index].name} - ${players[index].role}</li>;
             players.splice(index, 1);
             turn = turn === "A" ? "B" : "A";
             renderPlayers();
         }
-        
         renderPlayers();
     </script>
 </body>
