@@ -74,15 +74,47 @@
         button:hover {
             background: #cc7700;
         }
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                align-items: center;
-            }
-            .team, .bidding-area {
-                width: 90%;
-                margin-bottom: 20px;
-            }
+        .pay-button {
+            margin-top: 20px;
+            background: #00c3ff;
+            color: white;
+            font-size: 20px;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0px 0px 10px rgba(0, 195, 255, 0.7);
+            transition: 0.3s;
+        }
+        .pay-button:hover {
+            background: #008ac1;
+        }
+        .qr-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.3);
+            width: 90%;
+            max-width: 300px;
+            text-align: center;
+        }
+        .qr-modal img {
+            width: 100%;
+            height: auto;
+            max-width: 250px;
+            border-radius: 10px;
+        }
+        .close-btn {
+            background: red;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -96,7 +128,17 @@
         </div>
         <div class="bidding-area">
             <h2>Available Players</h2>
-            <ul id="availablePlayers" class="player-list"></ul>
+            <ul id="availablePlayers" class="player-list">
+                <li><img src="player1.jpg" alt="Sonu"> Sonu</li>
+                <li><img src="player2.jpg" alt="Tojo Da"> Tojo Da</li>
+                <li><img src="player3.jpg" alt="Sayak"> Sayak</li>
+                <li><img src="player4.jpg" alt="Samiran Da"> Samiran Da</li>
+                <li><img src="player5.jpg" alt="Loga"> Loga</li>
+                <li><img src="player6.jpg" alt="Vola"> Vola</li>
+                <li><img src="player7.jpg" alt="Avay"> Avay</li>
+                <li><img src="player8.jpg" alt="Polu"> Polu</li>
+                <li><img src="player9.jpg" alt="Aritra"> Aritra</li>
+            </ul>
         </div>
         <div class="team">
             <h2>Team B</h2>
@@ -104,52 +146,7 @@
         </div>
     </div>
 
-    <script>
-        const backgrounds = [
-            'https://github.com/F3LUD4/BaganPremierLeague/blob/main/ac3b014bef43d76837d310c331808f63.jpg?raw=true',
-            'https://github.com/F3LUD4/BaganPremierLeague/blob/main/cricket-logo-design-template-a06049850cc71f14a0e4a84a569dd129_screen.jpg?raw=true',
-            'https://github.com/F3LUD4/BaganPremierLeague/blob/main/Background.JPG?raw=true'
-        ];
-        let bgIndex = 0;
-        function changeBackground() {
-            document.body.style.backgroundImage = url(${backgrounds[bgIndex]});
-            bgIndex = (bgIndex + 1) % backgrounds.length;
-        }
-        setInterval(changeBackground, 5000);
-        changeBackground();
-
-        const players = [
-            { name: "Sonu", role: "All-rounder", img: "https://raw.githubusercontent.com/yourusername/your-repo/main/images/sonu.jpg" },
-            { name: "Tojo Da", role: "Batsman", img: "https://raw.githubusercontent.com/F3LUD4/BaganPremierLeague/refs/heads/main/IMG20230105084149.jpg" },
-            { name: "Sayak", role: "Batsman", img: "https://github.com/F3LUD4/BaganPremierLeague/blob/main/WhatsApp%20Image%202025-03-18%20at%2023.05.06_a10236c1.jpg?raw=true" },
-            { name: "Samiran Da", role: "Batsman", img: "https://raw.githubusercontent.com/yourusername/your-repo/main/images/samiran.jpg" },
-            { name: "Loga", role: "Bowler", img: "https://raw.githubusercontent.com/yourusername/your-repo/main/images/loga.jpg" },
-            { name: "Vola", role: "Swing Bowler", img: "https://raw.githubusercontent.com/yourusername/your-repo/main/images/vola.jpg" },
-            { name: "Avay", role: "All-rounder", img: "https://raw.githubusercontent.com/yourusername/your-repo/main/images/avay.jpg" },
-            { name: "Polu", role: "Batsman", img: "https://raw.githubusercontent.com/yourusername/your-repo/main/images/polu.jpg" },
-            { name: "Aritra", role: "Batsman", img: "https://raw.githubusercontent.com/yourusername/your-repo/main/images/aritra.jpg" }
-        ];
-
-        let turn = "A";
-        function renderPlayers() {
-            const playerList = document.getElementById("availablePlayers");
-            playerList.innerHTML = "";
-            players.forEach((player, index) => {
-                const li = document.createElement("li");
-                li.innerHTML = <img src="${player.img}" alt="${player.name}"> ${player.name} - ${player.role} <button onclick='bidPlayer(${index})'>Select</button>;
-                playerList.appendChild(li);
-            });
-        }
-        function bidPlayer(index) {
-            const team = turn === "A" ? "teamA" : "teamB";
-            document.getElementById(team).innerHTML += <li><img src="${players[index].img}" alt="${players[index].name}"> ${players[index].name} - ${players[index].role}</li>;
-            players.splice(index, 1);
-            turn = turn === "A" ? "B" : "A";
-            renderPlayers();
-        }
-        renderPlayers();
-    </script>
-        <button class="qr-button" onclick="showQR()">💳 Pay Now</button>
+    <button class="pay-button" onclick="showQR()">💳 PAY</button>
 
     <div id="qrModal" class="qr-modal">
         <img src="https://raw.githubusercontent.com/F3LUD4/BaganPremierLeague/main/qr-code.png" alt="QR Code">
